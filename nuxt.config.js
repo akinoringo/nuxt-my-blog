@@ -1,4 +1,5 @@
 export default {
+  ssr: false,
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'nuxt-my-blog',
@@ -31,12 +32,30 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios'],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
   axios: {
     browserBaseURL: 'http://localhost:8080/api/'
+  },
+
+  auth: {
+    redirect: {
+      login: '/login',   // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
+      logout: '/login',  // ログアウト時のリダイレクトURL
+      callback: false,   // Oauth認証等で必要となる コールバックルート
+      home: false,         // ログイン後のリダイレクトURL
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/auth/me', method: 'get', propertyName: 'user' }
+        },
+      }
+    }
   }
 }
