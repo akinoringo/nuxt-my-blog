@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div>ログイン状態: {{ $auth.loggedIn }}</div>
+    <div class="mt-4 mb-4">ログイン状態: {{ $auth.loggedIn }}</div>
     <div class="form">
       <input
         type="text"
         name="title"
-        class="form-control"
+        class="form-control mb-2"
         placeholder="Title"
         v-model="formValues.title"
         required
@@ -31,7 +31,7 @@
 import {defineComponent, reactive, useRouter} from '@nuxtjs/composition-api'
 import { CreateArticle } from '~/types/props-types'
 import { $axios } from "@/plugins/api"
-import { createArticleLink } from "../../compositions/useUrls"
+import { createArticleLink } from "@/compositions/useUrls"
 
 export default defineComponent({
   setup() {
