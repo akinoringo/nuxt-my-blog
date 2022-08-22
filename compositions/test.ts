@@ -8,16 +8,16 @@ export default function useTest() {
     return $axios.$get<TestData>(testLink)
   }
 
-  const test = ref<TestData>();
+  const tests = ref<TestData>();
 
   onBeforeMount(async () => {
     try {
-      test.value = await getTest()
+      tests.value = await getTest()
     } catch (error) {
       console.log(error)
     }
   })
 
-  return {test}
+  return {tests}
 
 }

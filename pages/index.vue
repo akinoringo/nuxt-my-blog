@@ -2,7 +2,11 @@
   <div>
     <div>ログイン状態: {{ $auth.loggedIn }}</div>
     <button @click="logout">ログアウト</button>
-    <div>{{ test }}</div>
+    <div v-for="test in tests" :key="test.id">
+      <p>{{ test.id }}</p>
+      <p>{{ test.title }}</p>
+      <p>{{ test.content }}</p>
+    </div>
   </div>
 </template>
 
@@ -14,7 +18,7 @@ export default defineComponent({
   setup() {
     const {$auth} = useContext()
     const router = useRouter()
-    const { test } = useTest();
+    const { tests } = useTest();
     const logout = () => {
       try {
         $auth.logout()
@@ -24,7 +28,7 @@ export default defineComponent({
       }
     }
 
-    return {test, logout}
+    return {tests, logout}
   }
 })
 
