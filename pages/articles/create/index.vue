@@ -29,19 +29,19 @@
 
 <script lang="ts">
 import {defineComponent, reactive, useRouter} from '@nuxtjs/composition-api'
-import { CreateArticle } from '~/types/props-types'
+import { FormArticle } from '~/types/props-types'
 import { $axios } from "@/plugins/api"
 import { createArticleLink } from "@/compositions/useUrls"
 
 export default defineComponent({
   setup() {
     const router = useRouter()
-    const formValues = reactive<CreateArticle>({
+    const formValues = reactive<FormArticle>({
       title: '',
       content: ''
     })
-    const postArticle = (inputData: CreateArticle) => {
-      return $axios.$post<CreateArticle>(createArticleLink, inputData)
+    const postArticle = (inputData: FormArticle) => {
+      return $axios.$post<FormArticle>(createArticleLink, inputData)
     }
 
     const submit = async () => {

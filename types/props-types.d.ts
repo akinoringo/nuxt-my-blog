@@ -19,7 +19,16 @@ export type LoginData = {
   password: string;
 }
 
-export type CreateArticle = {
+export type FormArticle = {
+  title: string | undefined;
+  content: string | undefined;
+}
+
+export type GetArticle = {
+  id: number;
   title: string;
   content: string;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
 }

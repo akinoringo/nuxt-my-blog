@@ -2,10 +2,15 @@
   <div>
     <div>ログイン状態: {{ $auth.loggedIn }}</div>
     <button @click="logout">ログアウト</button>
-    <div v-for="test in tests" :key="test.id">
+    <div v-for="test in tests" :key="test.id" class="mb-2">
       <p>{{ test.id }}</p>
       <p>{{ test.title }}</p>
       <p>{{ test.content }}</p>
+      <button
+        type="button"
+        class="btn btn-sm btn-secondary"
+        @click="loadEdit(test.id)"
+      >編集</button>
     </div>
   </div>
 </template>
@@ -28,7 +33,15 @@ export default defineComponent({
       }
     }
 
-    return {tests, logout}
+    const loadEdit = (id: number) => {
+      try {
+        router.push(`/articles/${id}`)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    return {tests, logout, loadEdit}
   }
 })
 
